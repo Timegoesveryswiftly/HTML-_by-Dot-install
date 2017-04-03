@@ -9,7 +9,17 @@
 <body>
 	<h1>メモ帳</h1>
 	<textarea id="memo" rows="5" cols="40" name="40"></textarea>
-	<p><input type="button" id="save" value="保存"><input type="button" id="clear" value="消去"></p>
+	<p>
+		<!-- <input type="button" id="save" value="保存"> -->
+		<input type="button" id="clear" value="消去">
+	</p>
+
+	<!--
+		localStorage.setItem
+		localStorage.getItem
+		localStorage.removeItem
+		localStorage.clear
+	-->
 
 <script>
 $(function () {
@@ -23,10 +33,15 @@ $(function () {
 		// localStorage.clear();
 	});
 
-	$('#save').click(function() {
-		localStorage.setItem('memo', $('#memo').val());
+	// $('#save').click(function() {
+		// localStorage.setItem('memo', $('#memo').val());
 		//console.log(localStorage.getItem('memo'));
-	});
+	// });
+
+	(function autoSave() {
+		localStorage.setItem('memo', $('#memo').val());
+		setTimeout(autoSave, 1500);
+	})(); //即時関数
 });
 </script>
 </body>
